@@ -49,5 +49,32 @@ public class SecureWebSocketManager
         configureSecurityOptions();
     }
 
+    private void configureSecurityOptions()
+    {
+        // Configure WebSocket server to use TLS with the provided certificate
+        _server.EnabledSslprotocols =
+            System.Security.Authentication.SslProtocols.Tls12 |
+            System.Security.Authentication.SslProtocols.Tls13;
+        _server.certificate = _serverCertificate;
+    }
+
+    public void Start()
+    {
+        _server.Start(socket =>
+        {
+            socket.OnOpen = () =>
+            {
+                var clientId = Guid.NewGuid().ToString();
+                _clients.TryAdd(clientId, socket);
+                Console.WriteLine($"New client connected: {clientId}");
+            };
+
+            socket.OnMessage = message =>
+            {
+                HandleIncomingMessage(socket, message);
+            };
+        });
+    }
+
 
 }
