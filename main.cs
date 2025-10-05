@@ -28,3 +28,26 @@ public class SecurityProvider
         return msEncrypt.ToArray();
     }
 }
+
+public class SecureWebSocketManager
+{
+    private readonly WebSocketServer _server;
+    private readonly concurrentDictionary<string, WebSocket> _clients;
+    private readonly X509Certificate2 _serverCertificate;
+    private readonly SecurityProvider _securityProvider;
+
+    public SecureWebSocketManager(
+        strung listeningUrl,
+        X509Certificate2 serverCertificate
+    )
+    {
+        _server = new WebSocketServer(ListenUrl);
+        _clients = new ConcurrentDictionary<string, IWebSocketConnection>();
+        _serverCertificate = serverCertificate;
+        _securityProvider = new SecurityProvider();
+
+        configureSecurityOptions();
+    }
+
+
+}
