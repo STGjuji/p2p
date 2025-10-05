@@ -28,7 +28,7 @@ public class SecurityProvider
         return msEncrypt.ToArray();
     }
 }
-
+// Real-time Communication with WebSockets
 public class SecureWebSocketManager
 {
     private readonly WebSocketServer _server;
@@ -77,4 +77,35 @@ public class SecureWebSocketManager
     }
 
 
+}
+// Secure authentication manager using JWT and password hashing
+public class AuthenticationManager : IDisposable
+{
+    private readonly IPasswordHasher<User> _passwordHasher;
+    private readonly JwtSecurityTokenHandler _tokenHandler;
+    private readonly byte[] _jwtKey;
+    private readonly bool _disposed;
+
+    public async Task<string> AuthenticateUserAsync(
+        string username,
+        SecureString securePassword
+    )
+    {
+        IntPtr unmanagesStringPtr = IntPtr.Zero;
+        try
+        {
+            unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
+            var password = Marshal.PtrToStringUni(unmanagedString);
+
+            var user = await ValidateCredentialsAsync(username, password);
+            if user == null)
+                throw new AuthenticationException("Authentication failed.");
+            return GenerateJwtToken(user);
+        }
+        finally
+        {
+            if (unmanagedStringPtr != IntPtr.Zero)
+                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedStringPtr);
+        }
+    }
 }
