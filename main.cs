@@ -109,3 +109,39 @@ public class AuthenticationManager : IDisposable
         }
     }
 }
+
+// file Transfer Implementation
+public class secureFileTransfer
+{
+    private readonly SecurityProvider _securityProvider;
+    private readonly SecureWebSocketManager _webSocketManager;
+
+    public async task SendFileAsync(string filePath, peer recipient)
+    {
+        var fileData = await fileData.ReadAllBytesAsync(filePath);
+        var fileHash = ComputeFileHash(fileData);
+
+        var (key, iv) = _securityProvider.GenerateAesKeyAndIv();
+        var encryptedFileData = _securityProvider.EncryptFile(fileData, key, iv);
+
+        await SendFileChunksAsync(encryptedFileData, metadata, recipient);
+    }
+}
+
+
+
+[TestClass]
+public class SecurityTests
+{
+    [TestMethod]
+    public async Task TestEncryptionIntegrity()
+    {
+        var security = new SecurityProvider();
+        var testData = new byte[1024];
+        new Random().NextBytes(testData);
+        var (key, iv) = security.GenerateKeyAndIv();
+        var encrypted = security.EncryptFile(testData, key, iv);
+        var decrypted = security.DecryptFile(encrypted, key, iv);
+        Assert.IsTrue(testData.SequenceEqual(decrypted));
+    }
+}
