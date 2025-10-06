@@ -1,0 +1,15 @@
+C:\gitrepo\p2p\p2p\obj\Debug\net9.0\p2p.GeneratedMSBuildEditorConfig.editorconfig
+C:\gitrepo\p2p\p2p\obj\Debug\net9.0\p2p.AssemblyInfoInputs.cache
+C:\gitrepo\p2p\p2p\obj\Debug\net9.0\p2p.AssemblyInfo.cs
+C:\gitrepo\p2p\p2p\obj\Debug\net9.0\p2p.csproj.CoreCompileInputs.cache
+C:\gitrepo\p2p\p2p\obj\Debug\net9.0\p2p.sourcelink.json
+c:\gitrepo\p2p\p2p\bin\Debug\net9.0\p2p.exe
+c:\gitrepo\p2p\p2p\bin\Debug\net9.0\p2p.deps.json
+c:\gitrepo\p2p\p2p\bin\Debug\net9.0\p2p.runtimeconfig.json
+c:\gitrepo\p2p\p2p\bin\Debug\net9.0\p2p.dll
+c:\gitrepo\p2p\p2p\bin\Debug\net9.0\p2p.pdb
+c:\gitrepo\p2p\p2p\obj\Debug\net9.0\p2p.dll
+c:\gitrepo\p2p\p2p\obj\Debug\net9.0\refint\p2p.dll
+c:\gitrepo\p2p\p2p\obj\Debug\net9.0\p2p.pdb
+c:\gitrepo\p2p\p2p\obj\Debug\net9.0\p2p.genruntimeconfig.cache
+c:\gitrepo\p2p\p2p\obj\Debug\net9.0\ref\p2p.dll
